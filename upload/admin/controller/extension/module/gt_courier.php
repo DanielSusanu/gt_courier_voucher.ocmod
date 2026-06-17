@@ -76,6 +76,17 @@ class ControllerExtensionModuleGtCourier extends Controller
         $this->response->setOutput($this->load->view('extension/module/gt_courier', $data));
     }
 
+    public function install() {
+        $this->load->model('setting/setting');
+        
+        // Forces the status to enabled (1) in the setting database table
+        $settings = [
+            'module_gt_courier_status' => 1
+        ];
+        
+        $this->model_setting_setting->editSetting('module_gt_courier', $settings);
+    }
+
 
     protected function validate() {
         if (!$this->user->hasPermission('modify', 'extension/module/gt_courier')) {

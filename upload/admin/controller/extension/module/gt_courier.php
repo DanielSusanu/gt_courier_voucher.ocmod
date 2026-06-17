@@ -79,6 +79,23 @@ class ControllerExtensionModuleGtCourier extends Controller
 			);
 		}
 
+        // Handle form save if the native status button is clicked
+        if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
+            $this->load->model('setting/setting');
+            $this->model_setting_setting->editSetting('module_gt_courier', $this->request->post);
+            $this->session->data['success'] = $this->language->get('text_success');
+            $this->response->redirect($this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=module', true));
+        }
+
+        // Pass action link to form
+        $data['action'] = $this->url->link('extension/module/gt_courier', 'user_token=' . $this->session->data['user_token'], true);
+
+        // Fetch current status for the template dropdown
+        if (isset($this->request->post['module_gt_courier_status'])) {
+            $data['module_gt_courier_status'] = $this->request->post['module_gt_courier_status'];
+        } else {
+            $data['module_gt_courier_status'] = $this->config->get('module_gt_courier_status');
+        }
 
         
 

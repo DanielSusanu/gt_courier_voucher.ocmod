@@ -24,6 +24,20 @@
                 <h3 class="panel-title"><i class="fa fa-pencil"></i> Επεξεργασία</h3>
             </div>
             <div class="panel-body">
+                <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-module" class="form-horizontal">
+                    <div class="form-group" style="border-bottom: 1px solid #ededed; padding-bottom: 15px; margin-bottom: 20px;">
+                        <label class="col-sm-2 control-label" for="input-status">Κατάσταση (Status)</label>
+                        <div class="col-sm-8">
+                            <select name="module_gt_courier_status" id="input-status" class="form-control">
+                                <option value="1" {% if module_gt_courier_status %}selected="selected"{% endif %}>Ενεργοποιημένο (Enabled)</option>
+                                <option value="0" {% if not module_gt_courier_status %}selected="selected"{% endif %}>Απενεργοποιημένο (Disabled)</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="submit" form="form-module" data-toggle="tooltip" title="Αποθήκευση Κατάστασης" class="btn btn-primary btn-block"><i class="fa fa-save"></i> Αποθήκευση</button>
+                        </div>
+                    </div>
+                </form>
                 <div id="settingsRoot"></div>
             </div>
          </div>

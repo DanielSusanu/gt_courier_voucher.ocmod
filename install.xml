@@ -13,10 +13,10 @@
         <search><![CDATA[<div class="page-header">]]></search>
         <add position="before"><![CDATA[         
           <div id="gtCourierVoucher"></div>         
-           <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
-           <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
-           <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-           <script type="text/babel" src="view/javascript/gt_courier/order_info.js?v=1.0.0"></script> 
+           <script src="view/javascript/vendor/react.production.min.js"></script>
+           <script src="view/javascript/vendor/react-dom.production.min.js"></script>
+           <script src="view/javascript/vendor/babel.min.js"></script>
+           <script src="view/javascript/gt_courier/order_info.js?v=1.1.0"></script> 
         ]]></add>
       </operation>      
 

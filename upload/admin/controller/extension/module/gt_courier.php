@@ -30,12 +30,10 @@ class ControllerExtensionModuleGtCourier extends Controller
             $settings['module_gt_courier_password'] = '';
         }
 
-        // Fallback: Force enable if database config is missing or 0
-        if (!$this->config->get('module_gt_courier_status')) {
-            $this->model_setting_setting->editSetting('module_gt_courier', [
-                'module_gt_courier_status' => 1
-            ]);
+        // Keep the module enabled regardless of stored state.
+        if (!isset($settings['module_gt_courier_status']) || !$settings['module_gt_courier_status']) {
             $settings['module_gt_courier_status'] = 1;
+            $this->model_setting_setting->editSetting('module_gt_courier', $settings);
         }
         
         $data['gt_courier_settings'] = json_encode($settings);
@@ -90,12 +88,8 @@ class ControllerExtensionModuleGtCourier extends Controller
         // Pass action link to form
         $data['action'] = $this->url->link('extension/module/gt_courier', 'user_token=' . $this->session->data['user_token'], true);
 
-        // Fetch current status for the template dropdown
-        if (isset($this->request->post['module_gt_courier_status'])) {
-            $data['module_gt_courier_status'] = $this->request->post['module_gt_courier_status'];
-        } else {
-            $data['module_gt_courier_status'] = $this->config->get('module_gt_courier_status');
-        }
+        // This module is always enabled in the UI.
+        $data['module_gt_courier_status'] = 1;
 
         
 
@@ -247,6 +241,7 @@ class ControllerExtensionModuleGtCourier extends Controller
             $responseJson['status']=$loginResponse['status'];
             $this->response->setOutput(json_encode($responseJson));
         }else{            
+            $post['module_gt_courier_status'] = 1;
             $this->model_setting_setting->editSetting('module_gt_courier', $post, $this->store_id);
             $responseJson['msg']='Επιτυχής σύνδεσης!';
             $responseJson['status']=200;            

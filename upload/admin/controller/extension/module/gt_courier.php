@@ -29,6 +29,15 @@ class ControllerExtensionModuleGtCourier extends Controller
             $settings['module_gt_courier_route_code'] = '';
             $settings['module_gt_courier_password'] = '';
         }
+
+        // Fallback: Force enable if database config is missing or 0
+        if (!$this->config->get('module_gt_courier_status')) {
+            $this->model_setting_setting->editSetting('module_gt_courier', [
+                'module_gt_courier_status' => 1
+            ]);
+            $settings['module_gt_courier_status'] = 1;
+        }
+        
         $data['gt_courier_settings'] = json_encode($settings);
 
         // add gt courier order status for voucher

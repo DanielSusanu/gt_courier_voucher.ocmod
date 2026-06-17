@@ -25,3 +25,11 @@
    - Go to `Dashboard`.
    - Click the blue `Developer Settings` gear icon in the top-right corner.
    - Click `Refresh` next to `Theme` and `SASS`.
+
+## Build
+
+1. Install the local build dependency with `npm install`.
+2. Run `npm run build` to generate:
+   - `upload/admin/view/javascript/gt_courier/settings.compiled.js`
+   - `upload/admin/view/javascript/gt_courier/order_info.compiled.js`
+3. Package the plugin after building so the compiled files are included in `gt_courier.ocmod.zip`.

@@ -1,0 +1,11 @@
+{
+  "name": "gt-courier-voucher-ocmod",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build-assets.cjs",
+    "build:assets": "node scripts/build-assets.cjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.1"
+  }
+}

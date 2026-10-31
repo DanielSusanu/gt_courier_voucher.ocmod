@@ -272,8 +272,10 @@ class ControllerExtensionModuleGtCourier extends Controller
         }
 
         $session_id=  $loginResponse['sid'];
+        $post['sid']=$session_id;
         $voucherResponse = $this->hermes_create_voucher($post,$session_id);
         $voucherResponse['sid']=$session_id;
+        $voucherResponse['post_data']=$post;
         $this->response->setOutput(json_encode($voucherResponse));
     }
    }

@@ -321,6 +321,7 @@ class ControllerExtensionModuleGtCourier extends Controller
         
         $code =  $response_data['code'];    
         $response_data['status']=$code;
+        $response_data['raw']=$response_data;
 
         return $response_data;   
    }
